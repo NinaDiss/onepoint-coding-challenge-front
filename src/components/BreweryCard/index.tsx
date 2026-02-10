@@ -1,5 +1,9 @@
+import { CardActions } from '@mui/material';
 import type { Brewery } from '../../types/brewery';
 import './BreweryCard.css';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 interface BreweryCardProps {
   brewery: Brewery;
@@ -7,36 +11,27 @@ interface BreweryCardProps {
 
 export const BreweryCard = ({ brewery }: BreweryCardProps) => {
   return (
-    <div className="brewery-card">
-      <div className="brewery-card-header">
+    <Card variant="outlined">
+      <CardContent>
         <h3 className="brewery-name">{brewery.name}</h3>
-        <span className={`brewery-type ${brewery.brewery_type}`}>
-          {brewery.brewery_type}
-        </span>
-      </div>
+        <p className="city">{brewery.city}
+          {brewery.state && <span className="state">, {brewery.state}</span>}
+          <span className="country">, {brewery.country}</span>
+        </p>
+      </CardContent>
       
-      <div className="brewery-card-body">
-        <div className="brewery-location">
-          <span className="location-icon">📍</span>
-          <div className="location-text">
-            <span className="city">{brewery.city}</span>
-            {brewery.state && <span className="separator">,</span>}
-            {brewery.state && <span className="state">{brewery.state}</span>}
-            <span className="country">, {brewery.country}</span>
-          </div>
-        </div>
-        
-        {brewery.website_url && (
-          <a 
+      {brewery.website_url && (
+        <CardActions>
+          <Button
+            variant="contained"
             href={brewery.website_url} 
-            className="website-link"
             target="_blank"
             rel="noopener noreferrer"
-          >
-            Visit Website
-          </a>
-        )}
-      </div>
-    </div>
+            >
+            Voir le site web
+          </Button>
+        </CardActions>
+      )}
+    </Card>
   );
 };

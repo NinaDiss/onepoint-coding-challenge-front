@@ -1,7 +1,8 @@
 import { useBreweries } from '../../hooks/useBreweries';
 import { BreweryCard } from '../BreweryCard';
-import { LoadingSpinner } from '../LoadingSpinner';
 import './BreweryList.css';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const BreweryList = () => {
   const {
@@ -28,17 +29,14 @@ export const BreweryList = () => {
       {error && (
         <div className="error-message">
           <p>❌ Error loading breweries: {error.message}</p>
-          <button 
-            className="retry-button"
-            onClick={() => window.location.reload()}
-          >
+          <Button onClick={() => window.location.reload()}>
             Try Again
-          </button>
+          </Button>
         </div>
       )}
 
       {loading && breweries.length === 0 ? (
-        <LoadingSpinner />
+        <CircularProgress />
       ) : (
         <>
           {breweries.length > 0 ? (
@@ -50,25 +48,24 @@ export const BreweryList = () => {
               </div>
 
               <div className="pagination-controls">
-                <button
-                  className={`pagination-button ${!hasPreviousPage ? 'disabled' : ''}`}
+                <Button
                   onClick={goToPreviousPage}
                   disabled={!hasPreviousPage}
                 >
-                  ← Previous
-                </button>
+                  Précédent
+                </Button>
                 
-                <span className="page-info">
+                <p>
                   Page {pagination.page}
-                </span>
+                </p>
 
-                <button
-                  className={`pagination-button ${!hasNextPage ? 'disabled' : ''}`}
+                <Button
+                  variant="outlined"
                   onClick={goToNextPage}
                   disabled={!hasNextPage}
                 >
-                  Next →
-                </button>
+                  Suivant
+                </Button>
               </div>
             </>
           ) : (

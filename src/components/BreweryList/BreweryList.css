@@ -1,6 +1,9 @@
 .brewery-list {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem; /* Create spacing variable */  
+  display: flex; /* Loader position */
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
 .brewery-list-header {
@@ -10,19 +13,14 @@
 
 .brewery-list-title {
   margin: 0 0 0.5rem 0;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2c3e50;
-  letter-spacing: -0.025em;
 }
 
 .brewery-list-subtitle {
-  margin: 0;
-  font-size: 1rem;
-  color: #6c757d;
+  color: #6c757d; /* Create spacing variable */
   font-weight: 500;
 }
 
+/* Use MUI component */
 .error-message {
   background-color: #ffebee;
   border: 1px solid #ffcdd2;
@@ -39,21 +37,6 @@
 .error-message p {
   margin: 0;
   font-weight: 500;
-}
-
-.retry-button {
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.retry-button:hover {
-  background-color: #b71c1c;
 }
 
 .no-breweries {
@@ -79,52 +62,6 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   border: 1px solid #e9ecef;
-}
-
-.pagination-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #007bff;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.pagination-button:hover:not(.disabled) {
-  background-color: #0056b3;
-  border-color: #0056b3;
-  transform: translateY(-1px);
-}
-
-.pagination-button:active:not(.disabled) {
-  transform: translateY(0);
-}
-
-.pagination-button.disabled {
-  background-color: #e9ecef;
-  border-color: #dee2e6;
-  color: #6c757d;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.pagination-button.disabled:hover {
-  background-color: #e9ecef;
-  transform: none;
-}
-
-.page-info {
-  font-weight: 600;
-  color: #495057;
-  padding: 0.5rem 1rem;
-  background-color: white;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  min-width: 80px;
-  text-align: center;
 }
 
 /* Responsive design */
