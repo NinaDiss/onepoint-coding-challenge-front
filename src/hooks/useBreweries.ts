@@ -1,19 +1,16 @@
-import { useEffect, useCallback } from 'react';
-import { useBreweryStore } from '../store/breweryStore';
+import { useEffect, useCallback } from "react";
+import { useBreweryStore } from "../store/breweryStore";
 
 export const useBreweries = () => {
-  const {
-    breweries,
-    loading,
-    error,
-    pagination,
-    fetchBreweries,
-    setPage
-  } = useBreweryStore();
+  const { breweries, loading, error, pagination, fetchBreweries, setPage } =
+    useBreweryStore();
 
-  const fetchBreweriesData = useCallback(async (page?: number, per_page?: number) => {
-    await fetchBreweries(page, per_page);
-  }, [fetchBreweries]);
+  const fetchBreweriesData = useCallback(
+    async (page?: number, per_page?: number) => {
+      await fetchBreweries(page, per_page);
+    },
+    [fetchBreweries],
+  );
 
   const goToPage = (page: number) => {
     setPage(page);
@@ -44,6 +41,6 @@ export const useBreweries = () => {
     fetchBreweries: fetchBreweriesData,
     goToPage,
     goToNextPage,
-    goToPreviousPage
+    goToPreviousPage,
   };
 };

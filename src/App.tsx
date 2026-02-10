@@ -1,10 +1,8 @@
-import { BreweryList } from './components/BreweryList';
-import './App.css';
+import { BreweryList } from "./components/BreweryList";
+import "./App.css";
 
 function App() {
-  return (
-    <BreweryList />
-  );
+  return <BreweryList />;
 }
 
 export default App;

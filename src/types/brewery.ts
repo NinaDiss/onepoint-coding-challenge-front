@@ -16,7 +16,17 @@ export interface Brewery {
   updated_at: Date;
 }
 
-type BreweryType = 'micro' | 'nano' | 'regional' | 'brewpub' | 'large' | 'planning' | 'bar' | 'contract' | 'proprietor' | 'closed';
+type BreweryType =
+  | "micro"
+  | "nano"
+  | "regional"
+  | "brewpub"
+  | "large"
+  | "planning"
+  | "bar"
+  | "contract"
+  | "proprietor"
+  | "closed";
 
 export interface PaginationState {
   page: number;

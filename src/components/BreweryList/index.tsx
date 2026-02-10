@@ -1,8 +1,8 @@
-import { useBreweries } from '../../hooks/useBreweries';
-import { BreweryCard } from '../BreweryCard';
-import './BreweryList.css';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useBreweries } from "../../hooks/useBreweries";
+import { BreweryCard } from "../BreweryCard";
+import "./BreweryList.css";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const BreweryList = () => {
   const {
@@ -11,7 +11,7 @@ export const BreweryList = () => {
     error,
     pagination,
     goToPreviousPage,
-    goToNextPage
+    goToNextPage,
   } = useBreweries();
 
   const hasPreviousPage = pagination.page > 1;
@@ -29,9 +29,7 @@ export const BreweryList = () => {
       {error && (
         <div className="error-message">
           <p>❌ Error loading breweries: {error.message}</p>
-          <Button onClick={() => window.location.reload()}>
-            Try Again
-          </Button>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       )}
 
@@ -48,16 +46,11 @@ export const BreweryList = () => {
               </div>
 
               <div className="pagination-controls">
-                <Button
-                  onClick={goToPreviousPage}
-                  disabled={!hasPreviousPage}
-                >
+                <Button onClick={goToPreviousPage} disabled={!hasPreviousPage}>
                   Précédent
                 </Button>
-                
-                <p>
-                  Page {pagination.page}
-                </p>
+
+                <p>Page {pagination.page}</p>
 
                 <Button
                   variant="outlined"

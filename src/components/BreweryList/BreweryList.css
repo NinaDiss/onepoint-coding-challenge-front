@@ -1,6 +1,6 @@
 .brewery-list {
   margin: 0 auto;
-  padding: 2rem; /* Create spacing variable */  
+  padding: 2rem; /* Create spacing variable */
   display: flex; /* Loader position */
   flex-direction: column;
   min-height: 100dvh;
@@ -69,21 +69,21 @@
   .brewery-list {
     padding: 1rem;
   }
-  
+
   .brewery-list-title {
     font-size: 2rem;
   }
-  
+
   .brewery-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .pagination-controls {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .page-info {
     min-width: auto;
     width: 100%;
@@ -94,7 +94,7 @@
   .brewery-list-title {
     font-size: 1.75rem;
   }
-  
+
   .pagination-controls {
     padding: 0.75rem;
   }
