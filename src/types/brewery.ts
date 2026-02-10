@@ -1,32 +1,11 @@
 export interface Brewery {
   id: string;
   name: string;
-  brewery_type: BreweryType;
-  street: string | null;
   city: string;
   state: string | null;
-  postal_code: string | null;
   country: string;
-  longitude: number | null;
-  latitude: number | null;
-  phone: string | null;
   website_url: string | null;
-  state_province: string | null;
-  created_at: Date;
-  updated_at: Date;
 }
-
-type BreweryType =
-  | "micro"
-  | "nano"
-  | "regional"
-  | "brewpub"
-  | "large"
-  | "planning"
-  | "bar"
-  | "contract"
-  | "proprietor"
-  | "closed";
 
 export interface PaginationState {
   page: number;

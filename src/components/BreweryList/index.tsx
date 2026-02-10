@@ -19,56 +19,45 @@ export const BreweryList = () => {
 
   return (
     <div className="brewery-list">
-      <div className="brewery-list-header">
-        <h1 className="brewery-list-title">Breweries</h1>
-        <p className="brewery-list-subtitle">
-          Showing {breweries.length} breweries
-        </p>
-      </div>
+      <h1 className="brewery-list-title">Trouver une craft-beer</h1>
+
+      {breweries.length > 0 && (
+        <>
+          <div className="brewery-grid">
+            {breweries.map((brewery) => (
+              <BreweryCard key={brewery.id} brewery={brewery} />
+            ))}
+          </div>
+
+          <div className="brewery-pagination-controls">
+            <Button onClick={goToPreviousPage} disabled={!hasPreviousPage}>
+              Précédent
+            </Button>
+            <p>Page {pagination.page}</p>
+            <Button
+              variant="outlined"
+              onClick={goToNextPage}
+              disabled={!hasNextPage}
+            >
+              Suivant
+            </Button>
+          </div>
+        </>
+      )}
 
       {error && (
-        <div className="error-message">
-          <p>❌ Error loading breweries: {error.message}</p>
-          <Button onClick={() => window.location.reload()}>Try Again</Button>
+        <div className="brewery-error-message">
+          <p>Une erreur s'est produite: {error.message}</p>
+          <Button onClick={() => window.location.reload()}>Réessayer</Button>
         </div>
       )}
 
-      {loading && breweries.length === 0 ? (
-        <CircularProgress />
-      ) : (
-        <>
-          {breweries.length > 0 ? (
-            <>
-              <div className="brewery-grid">
-                {breweries.map((brewery) => (
-                  <BreweryCard key={brewery.id} brewery={brewery} />
-                ))}
-              </div>
+      {loading && breweries.length === 0 && <CircularProgress />}
 
-              <div className="pagination-controls">
-                <Button onClick={goToPreviousPage} disabled={!hasPreviousPage}>
-                  Précédent
-                </Button>
-
-                <p>Page {pagination.page}</p>
-
-                <Button
-                  variant="outlined"
-                  onClick={goToNextPage}
-                  disabled={!hasNextPage}
-                >
-                  Suivant
-                </Button>
-              </div>
-            </>
-          ) : (
-            !loading && (
-              <div className="no-breweries">
-                <p>No breweries found.</p>
-              </div>
-            )
-          )}
-        </>
+      {!loading && breweries.length === 0 && (
+        <div className="brewery-no-results">
+          <p>Aucun résultat</p>
+        </div>
       )}
     </div>
   );

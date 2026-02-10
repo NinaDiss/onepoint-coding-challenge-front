@@ -13,11 +13,13 @@ export const BreweryCard = ({ brewery }: BreweryCardProps) => {
   return (
     <Card variant="outlined">
       <CardContent>
-        <h3 className="brewery-name">{brewery.name}</h3>
-        <p className="city">
+        <h2 className="brewery-name">{brewery.name}</h2>
+        <p className="brewery-city">
           {brewery.city}
-          {brewery.state && <span className="state">, {brewery.state}</span>}
-          <span className="country">, {brewery.country}</span>
+          {brewery.state && (
+            <span className="brewery-state">, {brewery.state}</span>
+          )}
+          <span className="brewery-country">, {brewery.country}</span>
         </p>
       </CardContent>
 
