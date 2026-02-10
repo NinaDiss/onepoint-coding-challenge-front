@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useBreweryStore } from '../store/breweryStore';
 
 export const useBreweries = () => {
@@ -11,9 +11,9 @@ export const useBreweries = () => {
     setPage
   } = useBreweryStore();
 
-  const fetchBreweriesData = async (page?: number, per_page?: number) => {
+  const fetchBreweriesData = useCallback(async (page?: number, per_page?: number) => {
     await fetchBreweries(page, per_page);
-  };
+  }, [fetchBreweries]);
 
   const goToPage = (page: number) => {
     setPage(page);
@@ -34,7 +34,7 @@ export const useBreweries = () => {
 
   useEffect(() => {
     fetchBreweriesData();
-  }, []);
+  }, [fetchBreweriesData]);
 
   return {
     breweries,
