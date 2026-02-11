@@ -14,7 +14,7 @@ export const breweryApi = {
   }: FetchBreweriesParams = {}): Promise<Brewery[]> {
     try {
       const response = await fetch(
-        `${API_BASE_URL}?page=${page}&per_page=${per_page}`,
+        `${API_BASE_URL}?page=${page}&per_page=${per_page}&by_country=france`,
       );
 
       if (!response.ok) {

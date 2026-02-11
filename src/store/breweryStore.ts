@@ -27,14 +27,19 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
 
       const breweries = await breweryApi.fetchBreweries({ page, per_page });
 
+      // Client-side filter to ensure only French breweries are displayed
+      const frenchBreweries = breweries.filter(
+        (brewery) => brewery.country.toLowerCase() === "france"
+      );
+
       // The API doesn't return total count, so we'll estimate based on what we get
-      const hasMore = breweries.length === per_page;
+      const hasMore = frenchBreweries.length === per_page;
       const estimatedTotal = hasMore
         ? page * per_page + per_page
         : page * per_page;
 
       set({
-        breweries,
+        breweries: frenchBreweries,
         loading: false,
         pagination: {
           page,
