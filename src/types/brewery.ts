@@ -1,12 +1,14 @@
 export interface Brewery {
   id: string;
   name: string;
-  city: string;
-  state: string | null;
-  country: string;
-  website_url: string | null;
+  city: string | null;
+  department: string | null;
 }
 
+export interface FetchBreweriesParams {
+  page?: number;
+  per_page?: number;
+}
 export interface PaginationState {
   page: number;
   per_page: number;

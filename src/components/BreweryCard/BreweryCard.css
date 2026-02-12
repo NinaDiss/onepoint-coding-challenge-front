@@ -4,16 +4,7 @@
   color: #2c3e50;
 }
 
-.brewery-city {
+.brewery-text {
   font-weight: 600;
   color: #2c3e50;
-}
-
-.brewery-state {
-  color: #495057;
-}
-
-.brewery-country {
-  color: #6c757d;
-  font-style: italic;
 }

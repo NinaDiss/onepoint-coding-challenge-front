@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { BreweryStore } from "../types/brewery";
-import { breweryApi } from "../services/breweryApi";
+import { allBreweriesApi } from "../services/allBreweriesApi";
 
 export const useBreweryStore = create<BreweryStore>((set) => ({
   breweries: [],
@@ -25,21 +25,19 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
     try {
       set({ loading: true, error: null });
 
-      const breweries = await breweryApi.fetchBreweries({ page, per_page });
-
-      // Client-side filter to ensure only French breweries are displayed
-      const frenchBreweries = breweries.filter(
-        (brewery) => brewery.country.toLowerCase() === "france"
-      );
+      const breweries = await allBreweriesApi.fetchAllBreweries({
+        page,
+        per_page,
+      });
 
       // The API doesn't return total count, so we'll estimate based on what we get
-      const hasMore = frenchBreweries.length === per_page;
+      const hasMore = breweries.length === per_page;
       const estimatedTotal = hasMore
         ? page * per_page + per_page
         : page * per_page;
 
       set({
-        breweries: frenchBreweries,
+        breweries,
         loading: false,
         pagination: {
           page,
