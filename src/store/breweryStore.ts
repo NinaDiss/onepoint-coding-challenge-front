@@ -12,6 +12,8 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
     total: 0,
   },
 
+  selectedDepartment: "",
+
   setLoading: (loading: boolean) => set({ loading }),
 
   setError: (error: Error | null) => set({ error }),
@@ -19,6 +21,12 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
   setPage: (page: number) =>
     set((state) => ({
       pagination: { ...state.pagination, page },
+    })),
+
+  setSelectedDepartment: (department: string) =>
+    set((state) => ({
+      selectedDepartment: department,
+      pagination: { ...state.pagination, page: 1 },
     })),
 
   fetchBreweries: async (page = 1, per_page = 20) => {

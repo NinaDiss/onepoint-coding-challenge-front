@@ -3,6 +3,10 @@ import { BreweryCard } from "../BreweryCard";
 import "./BreweryList.css";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 
 export const BreweryList = () => {
   const {
@@ -10,21 +14,50 @@ export const BreweryList = () => {
     loading,
     error,
     pagination,
+    uniqueDepartmentsNumber,
+    selectedDepartment,
     goToPreviousPage,
     goToNextPage,
+    setSelectedDepartment,
   } = useBreweries();
 
+  const filteredBreweries = selectedDepartment
+    ? breweries.filter((brewery) => brewery.department === selectedDepartment)
+    : breweries;
+
   const hasPreviousPage = pagination.page > 1;
-  const hasNextPage = breweries.length === pagination.per_page;
+  const hasNextPage = filteredBreweries.length === pagination.per_page;
 
   return (
     <div className="brewery-list">
-      <h1 className="brewery-list-title">Trouver une craft-beer</h1>
+      <div className="brewery-list-header">
+        <h1 className="brewery-list-title">Trouver une craft-beer</h1>
 
-      {breweries.length > 0 && (
+        <FormControl fullWidth>
+          <InputLabel id="select-label">Département</InputLabel>
+          <Select
+            labelId="select-label"
+            id="select"
+            value={selectedDepartment}
+            label="Department"
+            onChange={(e) => setSelectedDepartment(e.target.value)}
+          >
+            <MenuItem value="">
+              <em>Tous les départements</em>
+            </MenuItem>
+            {uniqueDepartmentsNumber.map((department) => (
+              <MenuItem key={department} value={department}>
+                {department}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+
+      {filteredBreweries.length > 0 && (
         <>
           <div className="brewery-grid">
-            {breweries.map((brewery) => (
+            {filteredBreweries.map((brewery) => (
               <BreweryCard key={brewery.id} brewery={brewery} />
             ))}
           </div>

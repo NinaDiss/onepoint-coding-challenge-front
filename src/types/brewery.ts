@@ -20,6 +20,7 @@ export interface BreweryState {
   loading: boolean;
   error: Error | null;
   pagination: PaginationState;
+  selectedDepartment: string;
 }
 
 export interface BreweryActions {
@@ -27,6 +28,7 @@ export interface BreweryActions {
   setLoading: (loading: boolean) => void;
   setError: (error: Error | null) => void;
   setPage: (page: number) => void;
+  setSelectedDepartment: (department: string) => void;
 }
 
 export type BreweryStore = BreweryState & BreweryActions;

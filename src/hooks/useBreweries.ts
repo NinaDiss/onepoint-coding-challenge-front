@@ -1,9 +1,18 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useBreweryStore } from "../store/breweryStore";
+import type { Brewery } from "../types/brewery";
 
 export const useBreweries = () => {
-  const { breweries, loading, error, pagination, fetchBreweries, setPage } =
-    useBreweryStore();
+  const {
+    breweries,
+    loading,
+    error,
+    pagination,
+    fetchBreweries,
+    setPage,
+    selectedDepartment,
+    setSelectedDepartment,
+  } = useBreweryStore();
 
   const fetchBreweriesData = useCallback(
     async (page?: number, per_page?: number) => {
@@ -33,14 +42,34 @@ export const useBreweries = () => {
     fetchBreweriesData();
   }, [fetchBreweriesData]);
 
+  const extractUniqueDepartments = (breweries: Brewery[]): string[] => {
+    return Array.from(
+      new Set(
+        breweries
+          .map((brewery) => brewery.department)
+          .filter(
+            (dept): dept is string => dept !== null && dept.trim() !== "",
+          ),
+      ),
+    ).sort();
+  };
+
+  const uniqueDepartmentsNumber = useMemo(
+    () => extractUniqueDepartments(breweries),
+    [breweries],
+  );
+
   return {
     breweries,
     loading,
     error,
     pagination,
+    uniqueDepartmentsNumber,
+    selectedDepartment,
     fetchBreweries: fetchBreweriesData,
     goToPage,
     goToNextPage,
     goToPreviousPage,
+    setSelectedDepartment,
   };
 };
