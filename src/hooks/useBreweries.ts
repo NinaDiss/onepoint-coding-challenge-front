@@ -46,7 +46,7 @@ export const useBreweries = () => {
     return Array.from(
       new Set(
         breweries
-          .map((brewery) => brewery.department)
+          .map((brewery) => brewery.postal_code.slice(0, 2))
           .filter(
             (dept): dept is string => dept !== null && dept.trim() !== "",
           ),

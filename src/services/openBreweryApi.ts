@@ -17,12 +17,7 @@ export const openBreweryApi = {
 
       const breweries: Brewery[] = await response.json();
 
-      return breweries.map((brewery) => ({
-        id: brewery.id,
-        name: brewery.name,
-        city: brewery.city,
-        department: null, // Open Brewery DB doesn't provide department info
-      }));
+      return breweries;
     } catch (error) {
       console.error("Error fetching breweries from Open Brewery DB:", error);
       throw error;

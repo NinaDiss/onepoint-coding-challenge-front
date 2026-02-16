@@ -1,8 +1,7 @@
 export interface Brewery {
   id: string;
   name: string;
-  city: string | null;
-  department: string | null;
+  postal_code: string;
 }
 
 export interface FetchBreweriesParams {

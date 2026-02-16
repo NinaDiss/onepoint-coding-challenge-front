@@ -12,12 +12,7 @@ export const backendApi = {
 
       const scrapedBreweries: Brewery[] = await response.json();
 
-      return scrapedBreweries.map((brewery) => ({
-        id: brewery.id,
-        name: brewery.name,
-        city: null, // The backend doesn't provide city info
-        department: brewery.department,
-      }));
+      return scrapedBreweries;
     } catch (error) {
       console.error("Error fetching scraped breweries:", error);
       throw error;

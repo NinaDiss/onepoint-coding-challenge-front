@@ -22,7 +22,9 @@ export const BreweryList = () => {
   } = useBreweries();
 
   const filteredBreweries = selectedDepartment
-    ? breweries.filter((brewery) => brewery.department === selectedDepartment)
+    ? breweries.filter(
+        (brewery) => brewery.postal_code.slice(0, 2) === selectedDepartment,
+      )
     : breweries;
 
   const hasPreviousPage = pagination.page > 1;
