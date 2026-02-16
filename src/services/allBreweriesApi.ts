@@ -10,7 +10,7 @@ export const allBreweriesApi = {
     try {
       const [openBreweryBreweries, backendBreweries] = await Promise.all([
         openBreweryApi.fetchBreweries({ page, per_page }),
-        backendApi.fetchScrapedBreweries(),
+        backendApi.fetchScrapedBreweries({ page, per_page }),
       ]);
 
       return [...openBreweryBreweries, ...backendBreweries];

@@ -28,7 +28,7 @@ export const BreweryList = () => {
     : breweries;
 
   const hasPreviousPage = pagination.page > 1;
-  const hasNextPage = filteredBreweries.length === pagination.per_page;
+  const hasNextPage = filteredBreweries.length >= pagination.per_page;
 
   return (
     <div className="brewery-list">

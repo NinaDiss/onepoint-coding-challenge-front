@@ -1,16 +1,22 @@
 import config from "../config";
-import type { Brewery } from "../types/brewery";
+import type { Brewery, FetchBreweriesParams } from "../types/brewery";
 
 export const backendApi = {
-  async fetchScrapedBreweries(): Promise<Brewery[]> {
+  async fetchScrapedBreweries({
+    page = 1,
+    per_page = 20,
+  }: FetchBreweriesParams = {}): Promise<Brewery[]> {
     try {
-      const response = await fetch(config.backendApiUrl);
+      const response = await fetch(
+        `${config.backendApiUrl}?page=${page}&per_page=${per_page}`,
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const scrapedBreweries: Brewery[] = await response.json();
+      const data = await response.json();
+      const scrapedBreweries: Brewery[] = data.breweries || [];
 
       return scrapedBreweries;
     } catch (error) {

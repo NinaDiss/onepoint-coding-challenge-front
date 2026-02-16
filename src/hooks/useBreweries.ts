@@ -27,7 +27,7 @@ export const useBreweries = () => {
   };
 
   const goToNextPage = () => {
-    if (breweries.length === pagination.per_page) {
+    if (breweries.length >= pagination.per_page) {
       goToPage(pagination.page + 1);
     }
   };
