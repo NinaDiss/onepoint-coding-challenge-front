@@ -1,4 +1,6 @@
-export const mockBreweryApiResponse = [
+import type { Brewery } from "../../../types/brewery";
+
+export const mockBreweryApiResponse: Brewery[] = [
   {
     id: "101",
     name: "Brasserie Artisanale de Paris",
