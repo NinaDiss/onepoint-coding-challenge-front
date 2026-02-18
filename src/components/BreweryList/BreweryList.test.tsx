@@ -24,14 +24,19 @@ describe("BreweryList", () => {
         page: 1,
         per_page: 20,
         total: 0,
+        last_page: 0,
+        has_next_page: false,
+        has_previous_page: false,
       },
-      uniqueDepartmentsNumber: [],
       selectedDepartment: "",
       goToPreviousPage: vi.fn(),
       goToNextPage: vi.fn(),
       setSelectedDepartment: vi.fn(),
       fetchBreweries: vi.fn(),
       goToPage: vi.fn(),
+      postalCodes: [],
+      loadingPostalCodes: false,
+      errorPostalCodes: null,
     });
 
     render(<BreweryList />);
@@ -64,14 +69,19 @@ describe("BreweryList", () => {
         page: 1,
         per_page: 20,
         total: 3,
+        last_page: 1,
+        has_next_page: false,
+        has_previous_page: false,
       },
-      uniqueDepartmentsNumber: ["75", "33"],
       selectedDepartment: "",
       goToPreviousPage: vi.fn(),
       goToNextPage: vi.fn(),
       setSelectedDepartment: vi.fn(),
       fetchBreweries: vi.fn(),
       goToPage: vi.fn(),
+      postalCodes: ["75", "33"],
+      loadingPostalCodes: false,
+      errorPostalCodes: null,
     });
 
     render(<BreweryList />);

@@ -8,7 +8,7 @@ describe("BreweryCard", () => {
   const mockBrewery: Brewery = {
     id: "123",
     name: "Brasserie Artisanale de Paris",
-    postal_code: "75001",
+    postal_code: "75",
   };
 
   it("should display brewery name and department from postal code correctly", () => {

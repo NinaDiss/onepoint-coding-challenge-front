@@ -12,9 +12,7 @@ export const BreweryCard = ({ brewery }: BreweryCardProps) => {
     <Card variant="outlined">
       <CardContent>
         <h2 className="brewery-name">{brewery.name}</h2>
-        <p className="brewery-text">
-          Département : {brewery.postal_code.slice(0, 2)}
-        </p>
+        <p className="brewery-text">Département : {brewery.postal_code}</p>
       </CardContent>
     </Card>
   );

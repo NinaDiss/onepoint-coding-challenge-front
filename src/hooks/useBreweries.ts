@@ -1,6 +1,6 @@
-import { useEffect, useCallback, useMemo } from "react";
+import { useEffect, useCallback } from "react";
 import { useBreweryStore } from "../store/breweryStore";
-import type { Brewery } from "../types/brewery";
+import { usePostalCodesStore } from "../store/postalCodesStore";
 
 export const useBreweries = () => {
   const {
@@ -13,6 +13,13 @@ export const useBreweries = () => {
     selectedDepartment,
     setSelectedDepartment,
   } = useBreweryStore();
+
+  const {
+    postalCodes,
+    loadingPostalCodes,
+    errorPostalCodes,
+    fetchPostalCodes,
+  } = usePostalCodesStore();
 
   const fetchBreweriesData = useCallback(
     async (page?: number, per_page?: number) => {
@@ -40,36 +47,22 @@ export const useBreweries = () => {
 
   useEffect(() => {
     fetchBreweriesData();
-  }, [fetchBreweriesData]);
-
-  const extractUniqueDepartments = (breweries: Brewery[]): string[] => {
-    return Array.from(
-      new Set(
-        breweries
-          .map((brewery) => brewery.postal_code.slice(0, 2))
-          .filter(
-            (dept): dept is string => dept !== null && dept.trim() !== "",
-          ),
-      ),
-    ).sort();
-  };
-
-  const uniqueDepartmentsNumber = useMemo(
-    () => extractUniqueDepartments(breweries),
-    [breweries],
-  );
+    fetchPostalCodes();
+  }, [fetchBreweriesData, fetchPostalCodes]);
 
   return {
     breweries,
     loading,
     error,
     pagination,
-    uniqueDepartmentsNumber,
     selectedDepartment,
     fetchBreweries: fetchBreweriesData,
     goToPage,
     goToNextPage,
     goToPreviousPage,
     setSelectedDepartment,
+    postalCodes,
+    loadingPostalCodes,
+    errorPostalCodes,
   };
 };

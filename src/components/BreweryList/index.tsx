@@ -7,6 +7,7 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import { usePostalCodesStore } from "../../store/postalCodesStore";
 
 export const BreweryList = () => {
   const {
@@ -14,17 +15,16 @@ export const BreweryList = () => {
     loading,
     error,
     pagination,
-    uniqueDepartmentsNumber,
     selectedDepartment,
     goToPreviousPage,
     goToNextPage,
     setSelectedDepartment,
   } = useBreweries();
 
+  const { postalCodes } = usePostalCodesStore();
+
   const filteredBreweries = selectedDepartment
-    ? breweries.filter(
-        (brewery) => brewery.postal_code.slice(0, 2) === selectedDepartment,
-      )
+    ? breweries.filter((brewery) => brewery.postal_code === selectedDepartment)
     : breweries;
 
   const hasPreviousPage = pagination.page > 1;
@@ -47,9 +47,9 @@ export const BreweryList = () => {
             <MenuItem value="">
               <em>Tous les départements</em>
             </MenuItem>
-            {uniqueDepartmentsNumber.map((department) => (
-              <MenuItem key={department} value={department}>
-                {department}
+            {postalCodes.map((postalCode) => (
+              <MenuItem key={postalCode} value={postalCode}>
+                {postalCode}
               </MenuItem>
             ))}
           </Select>
