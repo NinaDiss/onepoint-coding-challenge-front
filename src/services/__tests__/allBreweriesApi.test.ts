@@ -28,8 +28,8 @@ describe("allBreweriesApi", () => {
       per_page: 20,
     });
 
-    expect(result).toHaveLength(6);
-    expect(result).toEqual([
+    expect(result.breweries).toHaveLength(6);
+    expect(result.breweries).toEqual([
       ...mockBreweryApiResponse,
       ...mockBreweryApiResponse,
     ]);

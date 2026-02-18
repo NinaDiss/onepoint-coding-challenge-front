@@ -10,6 +10,9 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
     page: 1,
     per_page: 20,
     total: 0,
+    last_page: 0,
+    has_next_page: false,
+    has_previous_page: false,
   },
 
   selectedDepartment: "",
@@ -33,12 +36,13 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
     try {
       set({ loading: true, error: null });
 
-      const breweries = await allBreweriesApi.fetchAllBreweries({
+      const { breweries } = await allBreweriesApi.fetchAllBreweries({
         page,
         per_page,
       });
 
-      // The API doesn't return total count, so we'll estimate based on what we get
+      // For now, we'll estimate pagination since Open Brewery API doesn't provide it
+      // When we have backend pagination data, we can use that instead
       const hasMore = breweries.length === per_page;
       const estimatedTotal = hasMore
         ? page * per_page + per_page
@@ -51,6 +55,9 @@ export const useBreweryStore = create<BreweryStore>((set) => ({
           page,
           per_page,
           total: estimatedTotal,
+          last_page: Math.ceil(estimatedTotal / per_page),
+          has_next_page: hasMore,
+          has_previous_page: page > 1,
         },
       });
     } catch (error) {

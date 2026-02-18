@@ -15,8 +15,8 @@ export const backendApi = {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      const scrapedBreweries: Brewery[] = data.breweries || [];
+      const { data: breweries } = await response.json();
+      const scrapedBreweries: Brewery[] = breweries || [];
 
       return scrapedBreweries;
     } catch (error) {

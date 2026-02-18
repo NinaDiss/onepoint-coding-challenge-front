@@ -10,7 +10,7 @@ describe("backendApi", () => {
   it("should fetch and transform breweries successfully", async () => {
     const mockResponse = {
       ok: true,
-      json: vi.fn().mockResolvedValue({ breweries: mockBreweryApiResponse }),
+      json: vi.fn().mockResolvedValue({ data: mockBreweryApiResponse }),
     };
 
     globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
@@ -56,7 +56,7 @@ describe("backendApi", () => {
     const customParams = { page: 2, per_page: 50 };
     const mockResponse = {
       ok: true,
-      json: vi.fn().mockResolvedValue({ breweries: mockBreweryApiResponse }),
+      json: vi.fn().mockResolvedValue({ data: mockBreweryApiResponse }),
     };
 
     globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
