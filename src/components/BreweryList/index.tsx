@@ -1,4 +1,5 @@
 import { useBreweries } from "../../hooks/useBreweries";
+import { usePostalCodes } from "../../hooks/usePostalCodes";
 import { BreweryCard } from "../BreweryCard";
 import "./BreweryList.css";
 import Button from "@mui/material/Button";
@@ -7,7 +8,6 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { usePostalCodesStore } from "../../store/postalCodesStore";
 
 export const BreweryList = () => {
   const {
@@ -21,7 +21,7 @@ export const BreweryList = () => {
     setSelectedDepartment,
   } = useBreweries();
 
-  const { postalCodes } = usePostalCodesStore();
+  const { postalCodes } = usePostalCodes();
 
   const filteredBreweries = selectedDepartment
     ? breweries.filter((brewery) => brewery.postal_code === selectedDepartment)
@@ -64,6 +64,7 @@ export const BreweryList = () => {
             ))}
           </div>
 
+          {/* Use MUI components for pagination controls */}
           <div className="brewery-pagination-controls">
             <Button onClick={goToPreviousPage} disabled={!hasPreviousPage}>
               Précédent

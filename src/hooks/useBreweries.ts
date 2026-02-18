@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from "react";
 import { useBreweryStore } from "../store/breweryStore";
-import { usePostalCodesStore } from "../store/postalCodesStore";
 
 export const useBreweries = () => {
   const {
@@ -13,13 +12,6 @@ export const useBreweries = () => {
     selectedDepartment,
     setSelectedDepartment,
   } = useBreweryStore();
-
-  const {
-    postalCodes,
-    loadingPostalCodes,
-    errorPostalCodes,
-    fetchPostalCodes,
-  } = usePostalCodesStore();
 
   const fetchBreweriesData = useCallback(
     async (page?: number, per_page?: number) => {
@@ -47,8 +39,7 @@ export const useBreweries = () => {
 
   useEffect(() => {
     fetchBreweriesData();
-    fetchPostalCodes();
-  }, [fetchBreweriesData, fetchPostalCodes]);
+  }, [fetchBreweriesData]);
 
   return {
     breweries,
@@ -61,8 +52,5 @@ export const useBreweries = () => {
     goToNextPage,
     goToPreviousPage,
     setSelectedDepartment,
-    postalCodes,
-    loadingPostalCodes,
-    errorPostalCodes,
   };
 };
